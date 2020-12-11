@@ -65,6 +65,36 @@ register <code class="docutils literal notranslate"><span class="pre">a</span></
 statement means apply <code class="docutils literal notranslate"><span class="pre">CX</span> <span class="pre">a,</span> <span class="pre">b[j]</span></code> for each index <code class="docutils literal notranslate"><span class="pre">j</span></code> into register <code class="docutils literal notranslate"><span class="pre">b</span></code>. Finally, if <code class="docutils literal notranslate"><span class="pre">a</span></code> is a
 quantum register and <code class="docutils literal notranslate"><span class="pre">b</span></code> is a qubit, the statement means apply <code class="docutils literal notranslate"><span class="pre">CX</span> <span class="pre">a[j],</span> <span class="pre">b;</span></code> for each
 index <code class="docutils literal notranslate"><span class="pre">j</span></code> into register <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<div class="figure align-default" id="id4">
+<span id="fig-cnot-dist"></span><div class="figure-content" style="display: flex; gap: 2rem 0; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap;">
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/cnotqq.svg" src="../_images/cnotqq.svg" /></div>
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/cnotrr.svg" src="../_images/cnotrr.svg" /></div>
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/cnotqr.svg" src="../_images/cnotqr.svg" /></div>
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/cnotrq.svg" src="../_images/cnotrq.svg" /></div>
+</div>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The built-in two-qubit entangling gate is the
+controlled-NOT gate. If <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are qubits, the statement <code class="docutils literal notranslate"><span class="pre">CX</span> <span class="pre">a,b;</span></code> applies a
+controlled-NOT (CNOT) gate that flips the target qubit <code class="docutils literal notranslate"><span class="pre">b</span></code> iff the control qubit <code class="docutils literal notranslate"><span class="pre">a</span></code>
+is one. If <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are quantum registers, the statement applies CNOT gates between
+corresponding qubits of each register. There is a similar meaning when <code class="docutils literal notranslate"><span class="pre">a</span></code> is a qubit and
+<code class="docutils literal notranslate"><span class="pre">b</span></code> is a quantum register and vice versa.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id5">
+<span id="fig-u-dist"></span><div class="figure-content" style="display: flex; gap: 2rem 0; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap;">
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/uq.svg" src="../_images/uq.svg" /></div>
+<div class="figure-item" style="max-height: 10rem; width: 50%; display: flex; flex-direction: column;">
+<img alt="../_images/ur.svg" src="../_images/ur.svg" /></div>
+</div>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">The single-qubit unitary gates are built-in. These gates are parameterized by three real
+parameters <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span>, and <span class="math notranslate nohighlight">\(\lambda$\)</span>. If the argument <code class="docutils literal notranslate"><span class="pre">q</span></code> is a quantum register, the
+statement applies <code class="docutils literal notranslate"><span class="pre">size(q)</span></code> gates in parallel to the qubits of the
+register.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
 <p>All of the single-qubit unitary gates are also built-in and
 parameterized as</p>
 <div class="math notranslate nohighlight">
@@ -82,12 +112,15 @@ global phase. For example <code class="docutils literal notranslate"><span class
 <p>Finally, a built-in global phase gate allows the inclusion of arbitrary
 global phase on circuits. <code class="docutils literal notranslate"><span class="pre">gphase(γ);</span></code> adds a global phase of <span class="math notranslate nohighlight">\(e^{i\gamma}\)</span> to
 the circuit. e.g.:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gphase(0.5*γ)
+</pre></div>
+</div>
 </div>
 <div class="section" id="hierarchically-defined-unitary-gates">
 <span id="sec-macros"></span><h2>Hierarchically defined unitary gates<a class="headerlink" href="#hierarchically-defined-unitary-gates" title="Permalink to this headline">¶</a></h2>
 <p>For new gates, we associate them with a corresponding unitary
 transformation by a sequence of built-in gates. For example, a CPHASE
-operation is shown schematically in Fig. <a class="reference external" href="#fig:gate">[fig:gate]</a>. The
+operation is shown schematically in <a class="reference internal" href="#fig-gate"><span class="std std-numref">Fig. 3</span></a>
 corresponding OpenQASM code is</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate cphase(angle[32]: θ) a, b
 {
@@ -99,6 +132,12 @@ corresponding OpenQASM code is</p>
 }
 cphase(π / 2) q[0], q[1];
 </pre></div>
+</div>
+<div class="figure align-default" id="id6">
+<span id="fig-gate"></span><img alt="../_images/gate.svg" src="../_images/gate.svg" /><p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">New gates are defined from previously defined gates. The gates are applied using the statement
+<code class="docutils literal notranslate"><span class="pre">name(params)</span> <span class="pre">qargs;</span></code> just like the built-in gates. The parentheses are optional if there
+are no parameters. The gate <span class="math notranslate nohighlight">\({cphase}(\theta)\)</span> corresponds to the unitary matrix
+<span class="math notranslate nohighlight">\({diag}(1,1,1,e^{i\theta})\)</span> up to a global phase.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note that this definition does not imply that <code class="docutils literal notranslate"><span class="pre">cphase</span></code> must be implemented with
 this series of gates. Rather, we have specified the unitary
