@@ -108,16 +108,16 @@ an index set, for example <code class="docutils literal notranslate"><span class
 </div>
 <div class="section" id="integers">
 <h3>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h3>
-<p>Integer types support addition <code class="docutils literal notranslate"><span class="pre">+</span></code>, subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code>, multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>, and
+<p>Integer types support addition <code class="docutils literal notranslate"><span class="pre">+</span></code>, subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code>, multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>, and integer
 division <a class="footnote-reference brackets" href="#id5" id="id2">2</a> <code class="docutils literal notranslate"><span class="pre">/</span></code>; the corresponding assignments <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, and <code class="docutils literal notranslate"><span class="pre">/=</span></code>; as well as
 increment <code class="docutils literal notranslate"><span class="pre">++</span></code> and decrement <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 
 <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 5</span>
+<span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 1</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// a == 6</span>
-<span class="n">a</span> <span class="o">/=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// a == 2</span>
-<span class="n">a</span><span class="o">++</span><span class="p">;</span> <span class="c1">// a == 3</span>
+<span class="n">a</span><span class="o">++</span><span class="p">;</span> <span class="c1">// a == 7</span>
 </pre></div>
 </div>
 </div>
