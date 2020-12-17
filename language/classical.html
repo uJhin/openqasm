@@ -72,8 +72,8 @@ assigned variable on the LHS.</p>
 corresponding assignment operators between registers of the same size:
 and <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, or <code class="docutils literal notranslate"><span class="pre">|</span></code>, xor <code class="docutils literal notranslate"><span class="pre">^</span></code>. They support left shift <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> and right shift <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> by an unsigned
 integer, and the corresponding assignment operators. The shift operators
-shift bits off the end. They also support not <code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">popcount``[1]_,</span> <span class="pre">and</span> <span class="pre">left</span> <span class="pre">and</span>
-<span class="pre">right</span> <span class="pre">circular</span> <span class="pre">shift,</span> <span class="pre">``rotl</span></code> and <code class="docutils literal notranslate"><span class="pre">rotr</span></code>, respectively.</p>
+shift bits off the end. They also support not <code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">popcount</span></code> <a class="footnote-reference brackets" href="#id4" id="id1">1</a>, and left and
+right circular shift, <code class="docutils literal notranslate"><span class="pre">rotl</span></code> and <code class="docutils literal notranslate"><span class="pre">rotr</span></code>, respectively.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">bit</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&quot;10001111&quot;</span><span class="p">;</span>
 <span class="n">bit</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&quot;01110000&quot;</span><span class="p">;</span>
 
@@ -109,7 +109,7 @@ an index set, for example <code class="docutils literal notranslate"><span class
 <div class="section" id="integers">
 <h3>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h3>
 <p>Integer types support addition <code class="docutils literal notranslate"><span class="pre">+</span></code>, subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code>, multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>, and
-division[2]_ <code class="docutils literal notranslate"><span class="pre">/</span></code>; the corresponding assignments <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, and <code class="docutils literal notranslate"><span class="pre">/=</span></code>; as well as
+division <a class="footnote-reference brackets" href="#id5" id="id2">2</a> <code class="docutils literal notranslate"><span class="pre">/</span></code>; the corresponding assignments <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, and <code class="docutils literal notranslate"><span class="pre">/=</span></code>; as well as
 increment <code class="docutils literal notranslate"><span class="pre">++</span></code> and decrement <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -166,7 +166,7 @@ the indexset.</p>
 </pre></div>
 </div>
 <p>The statement <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">(</span> <span class="pre">bool</span> <span class="pre">)</span> <span class="pre">{</span> <span class="pre">program</span> <span class="pre">}</span></code> executes program until the Boolean evaluates to
-false <a class="footnote-reference brackets" href="#id4" id="id1">3</a>. Variables in the loop condition statement may be modified
+false <a class="footnote-reference brackets" href="#id6" id="id3">3</a>. Variables in the loop condition statement may be modified
 within the while loop body.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="n">q</span><span class="p">;</span>
 <span class="n">bit</span> <span class="n">result</span><span class="p">;</span>
@@ -229,15 +229,15 @@ computations. The output of a kernel function can be assigned to a
 variable on declaration using the assignment operator rather than the
 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> arrow notation.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets">1</span></dt>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">popcount</span></code> computes the Hamming weight of the input register.</p>
 </dd>
-<dt class="label" id="id3"><span class="brackets">2</span></dt>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>If multiplication and division instructions are not available in
 hardware, they can be implemented by expanding into other
 instructions.</p>
 </dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">3</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>This clearly allows users to write code that does not terminate. We
 do not discuss implementation details here, but one possibility is to
 compile into target code that imposes iteration limits</p>

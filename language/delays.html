@@ -150,7 +150,7 @@ whatever gap is present.</p>
 </div>
 <p>The concepts of <code class="docutils literal notranslate"><span class="pre">box</span></code> and <code class="docutils literal notranslate"><span class="pre">stretch</span></code> are inspired by the concept of “boxes and glues” in
 the TeX language <span class="bibtex" id="id1">[knuth1984texbook]</span>. This similarity
-is natural; TeXaims to resolve the spacing between characters in order
+is natural; TeX aims to resolve the spacing between characters in order
 to typeset a page, and the size of characters depend on the backend
 font. In OpenQASM we intend to resolve the timing of different
 instructions in order to meet high-level design intents, while the true
@@ -166,13 +166,13 @@ these side effects. Also contrary to TeX, we prohibit overlapping gates.</p>
 <p>We can add two lengths, or multiply them by a constant, to get new
 lengths. These are compile time operations since ultimately all lengths,
 including stretches, will be resolved to constants.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">300</span><span class="n">ns</span>
-<span class="n">length</span> <span class="n">b</span> <span class="o">=</span> <span class="n">lengthof</span><span class="p">({</span><span class="n">x</span> <span class="o">%</span><span class="mi">0</span><span class="p">})</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">300</span><span class="n">ns</span><span class="p">;</span>
+<span class="n">length</span> <span class="n">b</span> <span class="o">=</span> <span class="n">lengthof</span><span class="p">({</span><span class="n">x</span> <span class="o">%</span><span class="mi">0</span><span class="p">});</span>
 <span class="n">stretch</span> <span class="n">c</span><span class="p">;</span>
 <span class="c1">// stretchy length with min=300ns</span>
-<span class="n">length</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span>
+<span class="n">length</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">;</span>
 <span class="c1">// stretchy length with backtracking by up to half b</span>
-<span class="n">length</span> <span class="n">e</span> <span class="o">=</span> <span class="mf">-0.5</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">length</span> <span class="n">e</span> <span class="o">=</span> <span class="mf">-0.5</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -289,7 +289,7 @@ to properly take into account the finite length of each gate.</p>
 <span class="n">x</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">delay</span><span class="p">[</span><span class="n">middle_stretch</span><span class="p">]</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">y</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
-<span class="n">delay</span><span class="p">[</span><span class="n">middle_stretch</span><span class="p">]</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span><span class="o">=</span>
+<span class="n">delay</span><span class="p">[</span><span class="n">middle_stretch</span><span class="p">]</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">x</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">delay</span><span class="p">[</span><span class="n">middle_stretch</span><span class="p">]</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">y</span> <span class="o">%</span><span class="mi">0</span><span class="p">;</span>
