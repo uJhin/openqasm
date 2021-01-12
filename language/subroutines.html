@@ -83,7 +83,7 @@ follows</p>
 example. We could also just as easily have used a kernel function for
 this</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">n</span> <span class="o">=</span> <span class="cm">/* size of c + size of c2 */</span><span class="p">;</span>
-<span class="n">kernel</span> <span class="n">parity</span> <span class="n">bit</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">bit</span><span class="p">;</span>
+<span class="n">kernel</span> <span class="nf">parity</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">bit</span><span class="p">;</span>
 <span class="n">measure</span> <span class="n">q</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="p">;</span>
 <span class="n">measure</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">c2</span>
 <span class="n">parity</span><span class="p">(</span><span class="n">c</span> <span class="o">||</span> <span class="n">c2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">result</span><span class="p">;</span>
