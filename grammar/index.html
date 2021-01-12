@@ -140,11 +140,11 @@
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">header</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;OPENQASM&#39;</span><span class="w"> </span><span class="no">Number</span><span class="w"> </span><span class="o">(</span><span class="no">Dot</span><span class="w"> </span><span class="no">Number</span><span class="o">)?</span><span class="w"> </span><span class="no">SemiColon</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;OPENQASM&#39;</span><span class="w"> </span><span class="no">Number</span><span class="w"> </span><span class="o">(</span><span class="no">Dot</span><span class="w"> </span><span class="no">Number</span><span class="o">)?</span><span class="w"> </span><span class="no">SemiColon</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">include</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;include&#39;</span><span class="w"> </span><span class="no">StringLiteral</span><span class="w"> </span><span class="no">SemiColon</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;include&#39;</span><span class="w"> </span><span class="no">StringLiteral</span><span class="w"> </span><span class="no">SemiColon</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">statement</span><span class="w"></span>
@@ -169,7 +169,7 @@
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">gateDefinition</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="no">Gate</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="o">(</span><span class="nv">paramsList</span><span class="o">)?</span><span class="w"> </span><span class="nv">qargsList</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span><span class="nv">expression</span><span class="o">+</span><span class="w"> </span><span class="s">&#39;}&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="no">Gate</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="o">(</span><span class="nv">paramsList</span><span class="o">)?</span><span class="w"> </span><span class="nv">qargsList</span><span class="w"> </span><span class="s1">&#39;{&#39;</span><span class="w"> </span><span class="nv">expression</span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;}&#39;</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">paramsList</span><span class="w"></span>
@@ -201,33 +201,33 @@
 
 <span class="c">// Lexer variables needs some refactor</span><span class="w"></span>
 <span class="nl">varType</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;qubit&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;qreg&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;bit&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;creg&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;bool&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;const&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;int&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;uint&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;angle&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;fixed&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;qubit&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;qreg&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;bit&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;creg&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;bool&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;const&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;int&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;uint&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;angle&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;fixed&#39;</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">Gate</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;gate&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gate&#39;</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">Assign</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;=&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Assign</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">StringLiteral</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&quot;&#39;</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="s">&#39;&quot;&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">OpenBracket</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">OpenBracket</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">CloseBracket</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;]&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">CloseBracket</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">Colon</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;:&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Colon</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">SemiColon</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;;&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">SemiColon</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">Dot</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;.&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Dot</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">Comma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#39;,&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Comma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">Identifier</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="s">&#39;a&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s">&#39;z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;A&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s">&#39;Z&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="s">&#39;a&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s">&#39;z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;A&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s">&#39;Z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s">&#39;9&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&#39;_&#39;</span><span class="o">)*</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s1">&#39;Z&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s1">&#39;Z&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s1">&#39;9&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="o">)*</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">Number</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="x">0-9</span><span class="p">]</span><span class="o">+</span><span class="p">;</span><span class="w"></span>
@@ -292,7 +292,7 @@
       &copy;2017-2020, Andrew W. Cross, Lev S. Bishop, John A. Smolin, Jay M. Gambetta.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
