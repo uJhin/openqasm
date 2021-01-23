@@ -222,7 +222,8 @@ of the gate definition.</p>
 </div>
 <p>Only built-in gate statements, calls to previously defined gates, and
 timing directives can appear in <code class="docutils literal notranslate"><span class="pre">body</span></code>. For example, it is not valid to
-declare a classical register in a gate body. The statements in the body
+declare a classical register in a gate body. Looping constructs over these quantum
+statements are valid. The statements in the body
 can only refer to the symbols given in the parameter or argument list,
 and these symbols are scoped only to the subroutine body. An empty body
 corresponds to the identity gate. Gates must be declared before use and
@@ -335,7 +336,7 @@ that of the built-in gates.</p>
 <li class="toctree-l2"><a class="reference internal" href="pulses.html">Pulse-level descriptions of gates and measurement</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">Grammar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">OpenQasm 3.0 Grammar</a></li>
 </ul>
 
 <div class="relations">
