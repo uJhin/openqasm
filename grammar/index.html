@@ -622,7 +622,8 @@
 <span class="normal">586</span>
 <span class="normal">587</span>
 <span class="normal">588</span>
-<span class="normal">589</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">/***** ANTLRv4  grammar for OpenQASM3.0. *****/</span><span class="w"></span>
+<span class="normal">589</span>
+<span class="normal">590</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">/***** ANTLRv4  grammar for OpenQASM3.0. *****/</span><span class="w"></span>
 
 <span class="k">grammar</span><span class="w"> </span><span class="nc">qasm3</span><span class="p">;</span><span class="w"></span>
 
@@ -1094,7 +1095,7 @@
 
 <span class="nl">timingType</span><span class="w"></span>
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;length&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;stretch&#39;</span><span class="w"> </span><span class="no">Integer</span><span class="o">?</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="no">StretchN</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">timingBox</span><span class="w"></span>
@@ -1191,6 +1192,7 @@
 <span class="k">fragment</span><span class="w"> </span><span class="nl">FirstIdCharacter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;$&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="no">ValidUnicode</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="no">Letter</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
 <span class="k">fragment</span><span class="w"> </span><span class="nl">GeneralIdCharacter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">FirstIdCharacter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="no">Integer</span><span class="p">;</span><span class="w"></span>
 
+<span class="nl">StretchN</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;stretch&#39;</span><span class="w"> </span><span class="no">Digit</span><span class="o">*</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
 <span class="nl">Identifier</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">FirstIdCharacter</span><span class="w"> </span><span class="no">GeneralIdCharacter</span><span class="o">*</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
 
 <span class="k">fragment</span><span class="w"> </span><span class="nl">SciNotation</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="x">eE</span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
@@ -1272,7 +1274,7 @@
       &copy;2017-2020, Andrew W. Cross, Lev S. Bishop, John A. Smolin, Jay M. Gambetta.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
