@@ -38,10 +38,11 @@
 Zero or more quantum bits
 and registers are passed to the subroutine by reference or name in <code class="docutils literal notranslate"><span class="pre">qargs</span></code>.
 Classical types are passed by value in <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. The parentheses may be omitted if no
-<code class="docutils literal notranslate"><span class="pre">parameters</span></code> are passed. The subroutines return up to
-one classical type. All arguments are declared together with their type,
-for example <code class="docutils literal notranslate"><span class="pre">qubit:</span> <span class="pre">ancilla</span></code> would define a quantum bit argument named <code class="docutils literal notranslate"><span class="pre">ancilla</span></code>. Qubit
-declarations are not allowed within subroutines as they are global. A subroutine
+<code class="docutils literal notranslate"><span class="pre">parameters</span></code> are passed. The subroutines return up to one value of classical type, signified by the
+<code class="docutils literal notranslate"><span class="pre">return</span></code> keyword. If there is no return type, the empty <code class="docutils literal notranslate"><span class="pre">return</span></code>
+keyword may be used to immediately exit from the subroutine. All arguments are declared together
+with their type, for example <code class="docutils literal notranslate"><span class="pre">qubit:</span> <span class="pre">ancilla</span></code> would define a quantum bit argument named <code class="docutils literal notranslate"><span class="pre">ancilla</span></code>.
+Qubit declarations are not allowed within subroutines as they are global. A subroutine
 is invoked with the syntax <code class="docutils literal notranslate"><span class="pre">name(parameters)</span> <span class="pre">qargs</span></code> and may be assigned to an <code class="docutils literal notranslate"><span class="pre">output</span></code> as
 needed via an assignment operator (<code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, etc). <code class="docutils literal notranslate"><span class="pre">parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">qargs</span></code> are literals
 and <code class="docutils literal notranslate"><span class="pre">output</span></code> is a variable.</p>

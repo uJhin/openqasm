@@ -623,7 +623,11 @@
 <span class="normal">587</span>
 <span class="normal">588</span>
 <span class="normal">589</span>
-<span class="normal">590</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">/***** ANTLRv4  grammar for OpenQASM3.0. *****/</span><span class="w"></span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">/***** ANTLRv4  grammar for OpenQASM3.0. *****/</span><span class="w"></span>
 
 <span class="k">grammar</span><span class="w"> </span><span class="nc">qasm3</span><span class="p">;</span><span class="w"></span>
 
@@ -660,7 +664,7 @@
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">classicalDeclarationStatement</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">branchingStatement</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">loopStatement</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">controlDirectiveStatement</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">endStatement</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">aliasStatement</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumStatement</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
@@ -819,7 +823,13 @@
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">quantumGateSignature</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;CX&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;U&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="nv">identifierList</span><span class="o">?</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="nv">identifierList</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">quantumGateName</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="nv">identifierList</span><span class="o">?</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="nv">identifierList</span><span class="w"></span>
+<span class="w">    </span><span class="p">;</span><span class="w"></span>
+
+<span class="nl">quantumGateName</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;U&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;CX&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="no">Identifier</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">quantumBlock</span><span class="w"></span>
@@ -845,11 +855,16 @@
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">quantumGateCall</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumPhase</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumMeasurement</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumReset</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumBarrier</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">quantumPhase</span><span class="w"></span>
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gphase&#39;</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"></span>
+<span class="w">    </span><span class="p">;</span><span class="w"></span>
+
+<span class="nl">quantumReset</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;reset&#39;</span><span class="w"> </span><span class="nv">indexIdentifierList</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">quantumMeasurement</span><span class="w"></span>
@@ -870,15 +885,7 @@
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">quantumGateCall</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">quantumGateName</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="nv">expressionList</span><span class="o">?</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="nv">indexIdentifierList</span><span class="w"></span>
-<span class="w">    </span><span class="p">;</span><span class="w"></span>
-
-<span class="nl">quantumGateName</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CX&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;U&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;reset&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="no">Identifier</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumGateModifier</span><span class="w"> </span><span class="nv">quantumGateName</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">quantumGateModifier</span><span class="o">*</span><span class="w"> </span><span class="nv">quantumGateName</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="nv">expressionList</span><span class="o">?</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="nv">indexIdentifierList</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="c">/*** Classical Instructions ***/</span><span class="w"></span>
@@ -998,11 +1005,11 @@
 <span class="c">/** Boolean expression hierarchy **/</span><span class="w"></span>
 <span class="nl">booleanExpression</span><span class="w"></span>
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">membershipTest</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">comparsionExpression</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">booleanExpression</span><span class="w"> </span><span class="nv">logicalOperator</span><span class="w"> </span><span class="nv">comparsionExpression</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">comparisonExpression</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">booleanExpression</span><span class="w"> </span><span class="nv">logicalOperator</span><span class="w"> </span><span class="nv">comparisonExpression</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">comparsionExpression</span><span class="w"></span>
+<span class="nl">comparisonExpression</span><span class="w"></span>
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">expression</span><span class="w">  </span><span class="c">// if (expression)</span><span class="w"></span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">expression</span><span class="w"> </span><span class="nv">relationalOperator</span><span class="w"> </span><span class="nv">expression</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
@@ -1032,8 +1039,8 @@
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">programBlock</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">statement</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="no">LBRACE</span><span class="w"> </span><span class="nv">statement</span><span class="o">*</span><span class="w"> </span><span class="no">RBRACE</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">statement</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">controlDirective</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="no">LBRACE</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">statement</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">controlDirective</span><span class="w"> </span><span class="o">)*</span><span class="w"> </span><span class="no">RBRACE</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">branchingStatement</span><span class="w"></span>
@@ -1047,14 +1054,17 @@
 
 <span class="nl">loopStatement</span><span class="p">:</span><span class="w"> </span><span class="nv">loopSignature</span><span class="w"> </span><span class="nv">programBlock</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
 
-<span class="nl">controlDirectiveStatement</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="nv">controlDirective</span><span class="w"> </span><span class="no">SEMICOLON</span><span class="w"></span>
+<span class="nl">endStatement</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;end&#39;</span><span class="w"> </span><span class="no">SEMICOLON</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
+<span class="nl">returnStatement</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;return&#39;</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">expression</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">quantumMeasurement</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="no">SEMICOLON</span><span class="p">;</span><span class="w"></span>
+
 <span class="nl">controlDirective</span><span class="w"></span>
-<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;break&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;continue&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;end&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;break&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;continue&#39;</span><span class="o">)</span><span class="w"> </span><span class="no">SEMICOLON</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">endStatement</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nv">returnStatement</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">kernelDeclaration</span><span class="w"></span>
@@ -1073,8 +1083,6 @@
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;def&#39;</span><span class="w"> </span><span class="no">Identifier</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="no">LPAREN</span><span class="w"> </span><span class="nv">classicalArgumentList</span><span class="o">?</span><span class="w"> </span><span class="no">RPAREN</span><span class="w"> </span><span class="o">)?</span><span class="w"> </span><span class="nv">quantumArgumentList</span><span class="o">?</span><span class="w"></span>
 <span class="w">    </span><span class="nv">returnSignature</span><span class="o">?</span><span class="w"> </span><span class="nv">subroutineBlock</span><span class="w"></span>
 <span class="w">    </span><span class="p">;</span><span class="w"></span>
-
-<span class="nl">returnStatement</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;return&#39;</span><span class="w"> </span><span class="nv">statement</span><span class="p">;</span><span class="w"></span>
 
 <span class="nl">subroutineBlock</span><span class="w"></span>
 <span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="no">LBRACE</span><span class="w"> </span><span class="nv">statement</span><span class="o">*</span><span class="w"> </span><span class="nv">returnStatement</span><span class="o">?</span><span class="w"> </span><span class="no">RBRACE</span><span class="w"></span>
