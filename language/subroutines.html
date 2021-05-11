@@ -42,21 +42,21 @@ Classical types are passed by value in <code class="docutils literal notranslate
 <code class="docutils literal notranslate"><span class="pre">parameters</span></code> are passed. The subroutines return up to one value of classical type, signified by the
 <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword. If there is no return type, the empty <code class="docutils literal notranslate"><span class="pre">return</span></code>
 keyword may be used to immediately exit from the subroutine. All arguments are declared together
-with their type, for example <code class="docutils literal notranslate"><span class="pre">qubit:</span> <span class="pre">ancilla</span></code> would define a quantum bit argument named <code class="docutils literal notranslate"><span class="pre">ancilla</span></code>.
+with their type, for example <code class="docutils literal notranslate"><span class="pre">qubit</span> <span class="pre">ancilla</span></code> would define a quantum bit argument named <code class="docutils literal notranslate"><span class="pre">ancilla</span></code>.
 Qubit declarations are not allowed within subroutines as they are global. A subroutine
 is invoked with the syntax <code class="docutils literal notranslate"><span class="pre">name(parameters)</span> <span class="pre">qargs</span></code> and may be assigned to an <code class="docutils literal notranslate"><span class="pre">output</span></code> as
 needed via an assignment operator (<code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, etc). <code class="docutils literal notranslate"><span class="pre">parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">qargs</span></code> are literals
 and <code class="docutils literal notranslate"><span class="pre">output</span></code> is a variable.</p>
 <p>Using subroutines, we can define an X-basis measurement with the program
-<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">xmeasure</span> <span class="pre">qubit:q</span> <span class="pre">-&gt;</span> <span class="pre">bit</span> <span class="pre">{</span> <span class="pre">h</span> <span class="pre">q;</span> <span class="pre">return</span> <span class="pre">measure</span> <span class="pre">q;</span> <span class="pre">}</span></code>.
+<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">xmeasure</span> <span class="pre">qubit</span> <span class="pre">q</span> <span class="pre">-&gt;</span> <span class="pre">bit</span> <span class="pre">{</span> <span class="pre">h</span> <span class="pre">q;</span> <span class="pre">return</span> <span class="pre">measure</span> <span class="pre">q;</span> <span class="pre">}</span></code>.
 We can also define more general classes of single-qubit measurements
 as
-<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">pmeasure(angle[32]:</span> <span class="pre">theta)</span> <span class="pre">qubit:q</span> <span class="pre">-&gt;</span> <span class="pre">bit</span> <span class="pre">{</span> <span class="pre">rz(theta)</span> <span class="pre">q;</span> <span class="pre">h</span> <span class="pre">q;</span> <span class="pre">return</span>
+<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">pmeasure(angle[32]</span> <span class="pre">theta)</span> <span class="pre">qubit</span> <span class="pre">q</span> <span class="pre">-&gt;</span> <span class="pre">bit</span> <span class="pre">{</span> <span class="pre">rz(theta)</span> <span class="pre">q;</span> <span class="pre">h</span> <span class="pre">q;</span> <span class="pre">return</span>
 <span class="pre">measure</span> <span class="pre">q;</span> <span class="pre">}</span></code>.
 The type declarations are necessary if we want to mix qubit and
 register arguments. For example, we might define a parity check
 subroutine that takes qubits and registers</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">xcheck</span> <span class="n">qubit</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">:</span><span class="n">d</span><span class="p">,</span> <span class="nl">qubit</span><span class="p">:</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">bit</span> <span class="p">{</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">xcheck</span> <span class="n">qubit</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">d</span><span class="p">,</span> <span class="n">qubit</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">bit</span> <span class="p">{</span>
   <span class="n">reset</span> <span class="n">a</span><span class="p">;</span>
   <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span> <span class="mi">3</span><span class="p">]</span> <span class="n">cx</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">;</span>
   <span class="k">return</span> <span class="n">measure</span> <span class="n">a</span><span class="p">;</span>
@@ -67,7 +67,7 @@ subroutine that takes qubits and registers</p>
 operations, such as methods we can implement using low-level classical
 instructions, like</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">n</span> <span class="o">=</span> <span class="cm">/* some size, known at compile time */</span><span class="p">;</span>
-<span class="n">def</span> <span class="nf">parity</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">:</span><span class="n">cin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bit</span> <span class="p">{</span>
+<span class="n">def</span> <span class="nf">parity</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="n">cin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bit</span> <span class="p">{</span>
   <span class="n">bit</span> <span class="n">c</span><span class="p">;</span>
   <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
     <span class="n">c</span> <span class="o">^=</span> <span class="n">cin</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
@@ -78,7 +78,8 @@ instructions, like</p>
 </div>
 <p>We can make some measurements and call this subroutine on the results as
 follows</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">qubit</span> <span class="n">r</span><span class="p">;</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">measure</span> <span class="n">q</span><span class="p">;</span>
 <span class="n">c2</span> <span class="o">=</span> <span class="n">measure</span> <span class="n">r</span><span class="p">;</span>
 <span class="n">bit</span> <span class="n">result</span><span class="p">;</span>
@@ -90,7 +91,8 @@ example. We could also just as easily have used a kernel function for
 this</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">n</span> <span class="o">=</span> <span class="cm">/* size of c + size of c2 */</span><span class="p">;</span>
 <span class="n">kernel</span> <span class="nf">parity</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">bit</span><span class="p">;</span>
-<span class="n">qubit</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+<span class="n">qubit</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">qubit</span> <span class="n">r</span><span class="p">;</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">measure</span> <span class="n">q</span><span class="p">;</span>
 <span class="n">c2</span> <span class="o">=</span> <span class="n">measure</span> <span class="n">r</span><span class="p">;</span>
 <span class="n">bit</span> <span class="n">result</span><span class="p">;</span>

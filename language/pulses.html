@@ -53,7 +53,7 @@ OpenQASM to these pulse-level definitions of gates and measurement.</p>
 <p>The entry point to such gate and measurement definitions is the <code class="docutils literal notranslate"><span class="pre">defcal</span></code> keyword
 analogous to the <code class="docutils literal notranslate"><span class="pre">gate</span></code> keyword, but where the <code class="docutils literal notranslate"><span class="pre">defcal</span></code> body specifies a pulse-level
 instruction sequence on <em>physical</em> qubits, e.g.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">defcal</span> <span class="nf">rz</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">:</span><span class="n">theta</span><span class="p">)</span> <span class="n">$0</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">defcal</span> <span class="nf">rz</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">theta</span><span class="p">)</span> <span class="n">$0</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 <span class="n">defcal</span> <span class="n">measure</span> <span class="n">$0</span> <span class="o">-&gt;</span> <span class="n">bit</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
 </div>
@@ -70,7 +70,7 @@ a specific qubit on the device, e.g. <code class="docutils literal notranslate">
 qubit 2.</p>
 <p>One can define a <cite>defcal</cite> using an arbitrary <cite>$</cite> identifier, provided that gate is called using physical
 qubits. For instance, to define an equivalent <cite>rz</cite> calibration on qubits 0 and 1, we could write</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">defcal</span> <span class="nf">rz</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">:</span><span class="n">theta</span><span class="p">)</span> <span class="n">$q</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">defcal</span> <span class="nf">rz</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">theta</span><span class="p">)</span> <span class="n">$q</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 <span class="c1">// we&#39;ve defined ``rz`` on arbitrary physical qubits, so we can do:</span>
 <span class="n">rz</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span> <span class="n">$0</span><span class="p">;</span>
 <span class="n">rz</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span> <span class="n">$1</span><span class="p">;</span>
@@ -93,8 +93,8 @@ physical qubits with different parameter values, e.g.</p>
 <p>Given multiple definitions of the same symbol, the compiler will match
 the most specific definition found for a given operation. Thus, given,</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">defcal</span> <span class="pre">rx(angle[20]:theta)</span> <span class="pre">$q</span>&#160; <span class="pre">...</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">defcal</span> <span class="pre">rx(angle[20]:theta)</span> <span class="pre">$0</span>&#160; <span class="pre">...</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">defcal</span> <span class="pre">rx(angle[20]</span> <span class="pre">theta)</span> <span class="pre">$q</span>&#160; <span class="pre">...</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">defcal</span> <span class="pre">rx(angle[20]</span> <span class="pre">theta)</span> <span class="pre">$0</span>&#160; <span class="pre">...</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">defcal</span> <span class="pre">rx(pi</span> <span class="pre">/</span> <span class="pre">2)</span> <span class="pre">$0</span>&#160; <span class="pre">...</span></code></p></li>
 </ol>
 <p>the operation <code class="docutils literal notranslate"><span class="pre">rx(pi/2)</span> <span class="pre">$0</span></code> would match to (3), <code class="docutils literal notranslate"><span class="pre">rx(pi)</span> <span class="pre">$0</span></code> would
