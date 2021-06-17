@@ -65,9 +65,9 @@ dependent <a class="footnote-reference brackets" href="#id3" id="id2">1</a>. Thi
 global phase. For example <code class="docutils literal notranslate"><span class="pre">U(π/2,</span> <span class="pre">0,</span> <span class="pre">π)</span> <span class="pre">q[0];</span></code>, applies a Hadamard gate to qubit <code class="docutils literal notranslate"><span class="pre">q[0]</span></code>.</p>
 <p>New gates are associated to a unitary transformation by defining them as a sequence of built-in or
 previously defined gates. For example the <code class="docutils literal notranslate"><span class="pre">gate</span></code> block</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate h q {
-   U(π/2, 0, π) q;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gate</span> <span class="n">h</span> <span class="n">q</span> <span class="p">{</span>
+   <span class="n">U</span><span class="p">(</span><span class="err">π</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="err">π</span><span class="p">)</span> <span class="n">q</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>defines a new gate called <code class="docutils literal notranslate"><span class="pre">h</span></code> and associates it to the unitary matrix of the Hadamard gate. Once we have
@@ -76,11 +76,11 @@ implemented by an instruction <code class="docutils literal notranslate"><span c
 the user and/or compiler, given information about the instructions supported by a particular target.</p>
 <p>Controlled gates can be constructed by adding a control modifier to an existing gate. For example,
 the NOT gate is given by <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">U(π,</span> <span class="pre">0,</span> <span class="pre">π)</span></code> and the block</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate CX c, t {
-   ctrl @ U(π, 0, π) c, t;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gate</span> <span class="n">CX</span> <span class="n">c</span><span class="p">,</span> <span class="n">t</span> <span class="p">{</span>
+   <span class="n">ctrl</span> <span class="err">@</span> <span class="n">U</span><span class="p">(</span><span class="err">π</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="err">π</span><span class="p">)</span> <span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
 
-CX q[1], q[0];
+<span class="n">CX</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>defines the gate</p>
@@ -147,11 +147,11 @@ phase <span class="math notranslate nohighlight">\(e^{i\gamma}\)</span>. When we
 that is applied when the control qubit is one. To capture the programmer’s intent, a built-in global phase gate
 allows the inclusion of arbitrary global phases on circuits. The instruction <code class="docutils literal notranslate"><span class="pre">gphase(γ);</span></code> adds a global phase
 of <span class="math notranslate nohighlight">\(e^{i\gamma}\)</span> to the scope containing the instruction. For example</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate rz(tau) q {
-  gphase(-tau/2);
-  U(0, 0, tau) q;
-}
-ctrl @ rz(π/2) q[1], q[0];
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gate</span> <span class="nf">rz</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="n">q</span> <span class="p">{</span>
+  <span class="n">gphase</span><span class="p">(</span><span class="o">-</span><span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span> <span class="n">q</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">ctrl</span> <span class="err">@</span> <span class="n">rz</span><span class="p">(</span><span class="err">π</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>constructs the gate</p>
@@ -175,15 +175,15 @@ e^{-i\tau/2} &amp; 0 \\
 transformation by a sequence of built-in gates. For example, a CPHASE
 operation is shown schematically in <a class="reference internal" href="#fig-gate"><span class="std std-numref">Fig. 3</span></a>
 corresponding OpenQASM code is</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate cphase(θ) a, b
-{
-  U(0, 0, θ / 2) a;
-  CX a, b;
-  U(0, 0, -θ / 2) b;
-  CX a, b;
-  U(0, 0, θ / 2) b;
-}
-cphase(π / 2) q[0], q[1];
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gate</span> <span class="nf">cphase</span><span class="p">(</span><span class="err">θ</span><span class="p">)</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+<span class="p">{</span>
+  <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="err">θ</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>
+  <span class="n">CX</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="err">θ</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">CX</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="err">θ</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cphase</span><span class="p">(</span><span class="err">π</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 </pre></div>
 </div>
 <figure class="align-default" id="id6">
@@ -272,9 +272,9 @@ both for programming convenience and compiler analysis.</p>
 reversing the order of the gates in its definition and replacing each of
 those with their inverse. The base case is given by replacing <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">&#64;</span> <span class="pre">CX</span></code> with <code class="docutils literal notranslate"><span class="pre">CX</span></code> and
 <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">&#64;</span> <span class="pre">U(θ,</span> <span class="pre">ϕ,</span> <span class="pre">λ)</span></code> by <code class="docutils literal notranslate"><span class="pre">U(-θ,</span> <span class="pre">-λ,</span> <span class="pre">-ϕ)</span></code>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>gate rzm(theta) q1 {
-    inv @ rzp(theta) q1;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gate</span> <span class="nf">rzm</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="n">q1</span> <span class="p">{</span>
+    <span class="n">inv</span> <span class="err">@</span> <span class="n">rzp</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="n">q1</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The modifier <code class="docutils literal notranslate"><span class="pre">pow(k)</span> <span class="pre">&#64;</span></code> replaces its gate argument <span class="math notranslate nohighlight">\(U\)</span> by its <span class="math notranslate nohighlight">\(k\)</span>th
@@ -282,10 +282,10 @@ power <span class="math notranslate nohighlight">\(U^k\)</span> for some positiv
 constant). Such a gate can be trivially defined as <span class="math notranslate nohighlight">\(k\)</span> repetitions
 of the original gate, although more efficient implementations may be
 possible.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// define x as sqrt(x)
-gate x q1 {
-    pow(2) @ sx q1;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// define x as sqrt(x)</span>
+<span class="n">gate</span> <span class="n">x</span> <span class="n">q1</span> <span class="p">{</span>
+    <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="err">@</span> <span class="n">sx</span> <span class="n">q1</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The modifier <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">&#64;</span></code> replaces its gate argument <span class="math notranslate nohighlight">\(U\)</span> by a
@@ -293,10 +293,10 @@ controlled-<span class="math notranslate nohighlight">\(U\)</span> gate. The new
 argument list for the controlled-<span class="math notranslate nohighlight">\(U\)</span> gate. The modified gate does
 not use any additional scratch space. A target may or may not be able to
 execute the gate without further compilation.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Define a controlled Rz operation using the ctrl gate modifier.
-gate crz(θ) q1, q2 {
-    ctrl @ U(θ, 0, 0) q1, q2;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a controlled Rz operation using the ctrl gate modifier.</span>
+<span class="n">gate</span> <span class="nf">crz</span><span class="p">(</span><span class="err">θ</span><span class="p">)</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span> <span class="p">{</span>
+    <span class="n">ctrl</span> <span class="err">@</span> <span class="n">U</span><span class="p">(</span><span class="err">θ</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="footnote brackets">

@@ -95,14 +95,14 @@ by the syntax <code class="docutils literal notranslate"><span class="pre">$[NUM
 references given by <code class="docutils literal notranslate"><span class="pre">$0</span></code>, <code class="docutils literal notranslate"><span class="pre">$1</span></code>, …, <code class="docutils literal notranslate"><span class="pre">$n-1</span></code>. These qubit types are
 used in lower parts of the compilation stack when emitting physical
 circuits.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Declare a qubit
-qubit gamma;
-// Declare a qubit with a Unicode name
-qubit γ;
-// Declare a qubit register with 20 qubits
-qubit[20] qubit_array;
-// CNOT gate between physical qubits 0 and 1
-CX $0, $1;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare a qubit</span>
+<span class="n">qubit</span> <span class="n">gamma</span><span class="p">;</span>
+<span class="c1">// Declare a qubit with a Unicode name</span>
+<span class="n">qubit</span> <span class="err">γ</span><span class="p">;</span>
+<span class="c1">// Declare a qubit register with 20 qubits</span>
+<span class="n">qubit</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">qubit_array</span><span class="p">;</span>
+<span class="c1">// CNOT gate between physical qubits 0 and 1</span>
+<span class="n">CX</span> <span class="n">$0</span><span class="p">,</span> <span class="n">$1</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
@@ -169,8 +169,8 @@ sign bit. The statement <code class="docutils literal notranslate"><span class="
 <p>IEEE 754 floating point registers may be declared with <code class="docutils literal notranslate"><span class="pre">float[size]</span> <span class="pre">name;</span></code>, where <code class="docutils literal notranslate"><span class="pre">float[64]</span></code> would
 indicate a standard double-precision float. Note that some hardware
 vendors may not support manipulating these values at run-time.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Declare a single-precision 32-bit float
-float[32] my_float = π;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare a single-precision 32-bit float</span>
+<span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">my_float</span> <span class="o">=</span> <span class="err">π</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
@@ -185,11 +185,11 @@ representation in phase estimation circuits and numerically controlled
 oscillators found in hardware platform. Note that defining gate
 parameters with <code class="docutils literal notranslate"><span class="pre">angle</span></code> types may be necessary for those parameters to be
 compatible with run-time values on some platforms.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Declare an angle with 20 bits of precision and assign it a value of π/2
-angle[20] my_angle = π / 2;
-float[32] float_pi = π;
-// equivalent to pi_by_2 up to rounding errors
-angle[20](float_pi / 2);
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare an angle with 20 bits of precision and assign it a value of π/2</span>
+<span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">my_angle</span> <span class="o">=</span> <span class="err">π</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">float_pi</span> <span class="o">=</span> <span class="err">π</span><span class="p">;</span>
+<span class="c1">// equivalent to pi_by_2 up to rounding errors</span>
+<span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">](</span><span class="n">float_pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -227,14 +227,14 @@ precision. Unlike casting from other types, implicit casts from real
 constants are permitted.</p>
 <p>A standard set of built-in constants which are included in the default
 namespace are listed in table <a class="reference external" href="#tab:real-constants">1</a>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Declare a constant
-const my_const = 1234;
-// Scientific notation is supported
-const another_const = 1e2;
-// Constant expressions are supported
-const pi_by_2 = π / 2;
-// Constants may be cast to real-time values
-float[32] pi_by_2_val = float(pi_by_2)
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare a constant</span>
+<span class="k">const</span> <span class="n">my_const</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">;</span>
+<span class="c1">// Scientific notation is supported</span>
+<span class="k">const</span> <span class="n">another_const</span> <span class="o">=</span> <span class="mf">1e2</span><span class="p">;</span>
+<span class="c1">// Constant expressions are supported</span>
+<span class="k">const</span> <span class="n">pi_by_2</span> <span class="o">=</span> <span class="err">π</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="c1">// Constants may be cast to real-time values</span>
+<span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">pi_by_2_val</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">pi_by_2</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="docutils container" id="tab-real-constants">
