@@ -360,6 +360,8 @@ barrier, or cancelled by a compiler.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">barrier</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">delay[0]</span></code>. The main difference is that <code class="docutils literal notranslate"><span class="pre">delay</span></code> indicates a fully
 scheduled series of instructions, whereas <code class="docutils literal notranslate"><span class="pre">barrier</span></code> implies an ordering constraint that will be
 resolved by the compiler at a later stage.</p>
+<p>A barrier can also be invoked without arguments, in which case the argument is assumed to be all
+qubits.</p>
 </section>
 </section>
 
