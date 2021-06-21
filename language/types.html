@@ -219,7 +219,7 @@ has a similar syntax as OpenQASM 2 parameter expressions; however,
 previously defined constants can be referenced in later variable
 declarations. Real constants are compile-time constants, allowing the
 compiler to do constant folding and other such optimizations. Scientific
-calculator-like operations on run-time values require kernel function
+calculator-like operations on run-time values require extern function
 calls as described later and are not available by default. Real
 constants can be cast to other types. Casting attempts to preserve the
 semantics, but information can be lost, since variables have fixed
@@ -274,31 +274,27 @@ namespace are listed in table <a class="reference external" href="#tab:real-cons
 Types related to timing
 ———————–</p>
 </section>
-<section id="length">
-<h3>length<a class="headerlink" href="#length" title="Permalink to this headline">¶</a></h3>
-<p>We introduce a <code class="docutils literal notranslate"><span class="pre">length</span></code> type and several keywords to express lengths of time.
-Lengths are positive numbers with a unit of time. <code class="docutils literal notranslate"><span class="pre">ns,</span> <span class="pre">μs,</span> <span class="pre">ms,</span> <span class="pre">s</span></code> are used for SI time
+<section id="duration">
+<h3>Duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h3>
+<p>We introduce a <code class="docutils literal notranslate"><span class="pre">duration</span></code> type to express timing.
+Durations are positive numbers with a unit of time. <code class="docutils literal notranslate"><span class="pre">ns,</span> <span class="pre">μs,</span> <span class="pre">ms,</span> <span class="pre">s</span></code> are used for SI time
 units. <code class="docutils literal notranslate"><span class="pre">dt</span></code> is a backend-dependent unit equivalent to one waveform sample on
-the backend. <code class="docutils literal notranslate"><span class="pre">lengthof()</span></code> is an intrinsic function used to reference the duration of
-another part of the program or the duration of a calibrated gate.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="n">one_second</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">ms</span><span class="p">;</span>
-<span class="n">length</span> <span class="n">thousand_cycles</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">dt</span><span class="p">;</span>
+the backend. <code class="docutils literal notranslate"><span class="pre">durationof()</span></code> is an intrinsic function used to reference the duration of a calibrated gate.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="n">one_second</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">ms</span><span class="p">;</span>
+<span class="n">duration</span> <span class="n">thousand_cycles</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">dt</span><span class="p">;</span>
+<span class="n">duration</span> <span class="n">c</span> <span class="o">=</span> <span class="n">durationof</span><span class="p">({</span><span class="n">x</span> <span class="n">$3</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">length</span></code> is further discussed in <a class="reference internal" href="delays.html#length-and-stretch"><span class="std std-ref">length and stretch types</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">duration</span></code> is further discussed in <a class="reference internal" href="delays.html#duration-and-stretch"><span class="std std-ref">Duration and stretch types</span></a></p>
 </section>
 <section id="stretch">
-<h3>stretch<a class="headerlink" href="#stretch" title="Permalink to this headline">¶</a></h3>
-<p>We further introduce a <code class="docutils literal notranslate"><span class="pre">stretch</span></code> type which is a sub-type of <code class="docutils literal notranslate"><span class="pre">length</span></code>. Stretchable lengths
-have variable non-negative length that is permitted to grow as necessary
+<h3>Stretch<a class="headerlink" href="#stretch" title="Permalink to this headline">¶</a></h3>
+<p>We further introduce a <code class="docutils literal notranslate"><span class="pre">stretch</span></code> type which is a sub-type of <code class="docutils literal notranslate"><span class="pre">duration</span></code>. <code class="docutils literal notranslate"><span class="pre">stretch</span></code> types
+have variable non-negative duration that is permitted to grow as necessary
 to satisfy constraints. Stretch variables are resolved at compile time
 into target-appropriate durations that satisfy a user’s specified design
-intent. We distinguish different “orders” of stretch via <code class="docutils literal notranslate"><span class="pre">stretchN</span></code> types, where N
-is an integer between 0 to 255. <code class="docutils literal notranslate"><span class="pre">stretch0</span></code> is an alias for the regular <code class="docutils literal notranslate"><span class="pre">stretch</span></code>. At the
-timing resolution stage of the compiler, higher order stretches will
-suppress lower order stretches whenever they appear in the same scope on
-the same qubits.</p>
-<p><code class="docutils literal notranslate"><span class="pre">stretch</span></code> is further discussed in <a class="reference internal" href="delays.html#length-and-stretch"><span class="std std-ref">length and stretch types</span></a></p>
+intent.</p>
+<p><code class="docutils literal notranslate"><span class="pre">stretch</span></code> is further discussed in <a class="reference internal" href="delays.html#duration-and-stretch"><span class="std std-ref">Duration and stretch types</span></a></p>
 </section>
 </section>
 <section id="aliasing">
