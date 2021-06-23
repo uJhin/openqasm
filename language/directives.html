@@ -77,19 +77,19 @@ allows the programmer to communicate many different circuits with a single
 file, which only has to be compiled once, amortizing the cost of compilation
 across many runs. For an example, we may consider a parameterized circuit which
 performs a measurement in a basis given by an input parameter:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>input int basis; // 0 = X basis, 1 = Y basis, 2 = Z basis
-output bit result;
-qubit q;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">input</span> <span class="kt">int</span> <span class="n">basis</span><span class="p">;</span> <span class="c1">// 0 = X basis, 1 = Y basis, 2 = Z basis</span>
+<span class="n">output</span> <span class="n">bit</span> <span class="n">result</span><span class="p">;</span>
+<span class="n">qubit</span> <span class="n">q</span><span class="p">;</span>
 
-// Some complicated circuit...
+<span class="c1">// Some complicated circuit...</span>
 
-if (basis == 0) h q;
-else if (basis == 1) rx(π/2) q;
-result = measure q;
+<span class="k">if</span> <span class="p">(</span><span class="n">basis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">h</span> <span class="n">q</span><span class="p">;</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">basis</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">rx</span><span class="p">(</span><span class="err">π</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">measure</span> <span class="n">q</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>For a second example, consider the Variable Quantum Eigensolver (VQE) algorithm
-<span class="bibtex" id="id1">[peruzzo2014variational]</span>. In this algorithm the same circuit is repeated
+<p>For a second example, consider the Variable Quantum Eigensolver (VQE) algorithm <span class="bibtex" id="id1">[peruzzo2014variational]</span>.
+In this algorithm the same circuit is repeated
 many times using different sets of free parameters to minimize an expectation
 value. The following is an example, in which there is also more than one input
 variable:</p>
@@ -106,21 +106,27 @@ variable:</p>
 </div>
 <p>The following Python pseudocode illustrates the differences between using and
 not using parameterized circuits in a quantum program for the case of the VQE:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span># Example without using parametric circuits:
-for theta in thetas:
-# Create an OpenQASM circuit with θ defined
-circuit = subsitute_theta(read(&quot;circuit.qasm&quot;))
-# The slow compilation step is run on each iteration of the inner loop
-binary = compile_qasm(circuit)
-result = run_program(binary)
-# Example using parametric circuits:
-# parametric_circuit.qasm begins with the line &quot;input angle θ;&quot;
-circuit = read(&quot;parametric_circuit.qasm&quot;)
-# The slow compilation step only happens once
-binary = compile_qasm(circuit)
-for theta in thetas:
-# Each iteration of the inner loop is reduced to only running the circuit
-result = run_program(binary, θ=theta)
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example without using parametric circuits:</span>
+
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">:</span>
+    <span class="c1"># Create an OpenQASM circuit with θ defined</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">subsitute_theta</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;circuit.qasm&quot;</span><span class="p">))</span>
+
+    <span class="c1"># The slow compilation step is run on each iteration of the inner loop</span>
+    <span class="n">binary</span> <span class="o">=</span> <span class="n">compile_qasm</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">run_program</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+
+<span class="c1"># Example using parametric circuits:</span>
+
+<span class="c1"># parametric_circuit.qasm begins with the line &quot;input angle θ;&quot;</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s2">&quot;parametric_circuit.qasm&quot;</span><span class="p">)</span>
+
+<span class="c1"># The slow compilation step only happens once</span>
+<span class="n">binary</span> <span class="o">=</span> <span class="n">compile_qasm</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">:</span>
+    <span class="c1"># Each iteration of the inner loop is reduced to only running the circuit</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">run_program</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">θ</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
