@@ -109,15 +109,16 @@ an index set, for example <code class="docutils literal notranslate"><span class
 </section>
 <section id="integers">
 <h3>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h3>
-<p>Integer types support addition <code class="docutils literal notranslate"><span class="pre">+</span></code>, subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code>, multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>, integer division <a class="footnote-reference brackets" href="#id5" id="id2">2</a> <code class="docutils literal notranslate"><span class="pre">/</span></code>
-and modulo <code class="docutils literal notranslate"><span class="pre">%</span></code>; the corresponding assignments <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code> and <code class="docutils literal notranslate"><span class="pre">%=</span></code>; as well as
-increment <code class="docutils literal notranslate"><span class="pre">++</span></code> and decrement <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
+<p>Integer types support addition <code class="docutils literal notranslate"><span class="pre">+</span></code>, subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code>, multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>, integer division <a class="footnote-reference brackets" href="#id5" id="id2">2</a> <code class="docutils literal notranslate"><span class="pre">/</span></code>,
+modulo <code class="docutils literal notranslate"><span class="pre">%</span></code>, and power <code class="docutils literal notranslate"><span class="pre">**</span></code>; the corresponding assignments <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>, <code class="docutils literal notranslate"><span class="pre">%=</span></code> and
+<code class="docutils literal notranslate"><span class="pre">**=</span></code>; as well as increment <code class="docutils literal notranslate"><span class="pre">++</span></code> and decrement <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="kt">int</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 
 <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 6</span>
 <span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 1</span>
 <span class="n">b</span> <span class="o">%</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 1</span>
+<span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 8</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// a == 6</span>
 <span class="n">a</span><span class="o">++</span><span class="p">;</span> <span class="c1">// a == 7</span>
 </pre></div>
@@ -126,10 +127,11 @@ increment <code class="docutils literal notranslate"><span class="pre">++</span>
 <section id="fixed-point-numbers-and-angles">
 <h3>Fixed-point numbers and angles<a class="headerlink" href="#fixed-point-numbers-and-angles" title="Permalink to this headline">¶</a></h3>
 <p>Fixed-point and angle types support addition, subtraction,
-multiplication, and division and the corresponding assignment operators.</p>
+multiplication, division and power and the corresponding assignment operators.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
 <span class="n">angle</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pi</span><span class="p">;</span>
 <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 3/2 * pi</span>
+<span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 4.1316...</span>
 <span class="n">angle</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="n">c</span><span class="p">;</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">angle</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// cast to angle[10]</span>
 </pre></div>
@@ -152,37 +154,40 @@ multiplication, and division and the corresponding assignment operators.</p>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">()</span></code>, <code class="docutils literal notranslate"><span class="pre">[]</span></code>, <code class="docutils literal notranslate"><span class="pre">++</span></code>, <code class="docutils literal notranslate"><span class="pre">(type)(x)</span></code></p></td>
 <td><p>Call, index, incrementors, cast</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p>Power</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
 <td><p>Unary</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
 <td><p>Multiplicative</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
 <td><p>Additive</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
 <td><p>Bit Shift</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
 <td><p>Comparison</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
 <td><p>Equality</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
 <td><p>Bitwise AND</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
 <td><p>Bitwise XOR</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\|</span></code></p></td>
 <td><p>Bitwise OR</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
 <td><p>Logical AND</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
 <td><p>Logical OR</p></td>
 </tr>
 </tbody>
