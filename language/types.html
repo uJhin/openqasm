@@ -74,12 +74,18 @@ are scoped to the braces within which they are declared.</p>
 <section id="qubits">
 <h3>Qubits<a class="headerlink" href="#qubits" title="Permalink to this headline">¶</a></h3>
 <p>There is a quantum bit (<code class="docutils literal notranslate"><span class="pre">qubit</span></code>) type that is interpreted as a reference to a
-two-level subsystem of a quantum state. Quantum registers are static
-arrays of qubits that cannot be dynamically resized. The statement <code class="docutils literal notranslate"><span class="pre">qubit</span> <span class="pre">name;</span></code>
-declares a reference to a quantum bit. The statement <code class="docutils literal notranslate"><span class="pre">qubit[size]</span> <span class="pre">name;</span></code> declares a
-quantum register with <code class="docutils literal notranslate"><span class="pre">size</span></code> qubits. Sizes must always be constant positive integers.</p>
-<p>Qubit registers may also be declared as <code class="docutils literal notranslate"><span class="pre">qreg</span> <span class="pre">name[size]</span></code>. This keyword is included for backwards
-compatibility and may not be supported in the future.</p>
+two-level subsystem of a quantum state. The statement <code class="docutils literal notranslate"><span class="pre">qubit</span> <span class="pre">name;</span></code>
+declares a reference to a quantum bit. These qubits are referred
+to as “virtual qubits” (in distinction to “physical qubits” on
+actual hardware; see below). The statement <code class="docutils literal notranslate"><span class="pre">qubit[size]</span> <span class="pre">name;</span></code>
+declares a quantum register with <code class="docutils literal notranslate"><span class="pre">size</span></code> qubits.
+Sizes must always be constant positive integers. The label <code class="docutils literal notranslate"><span class="pre">name[j]</span></code>
+refers to a qubit of this register, where
+<span class="math notranslate nohighlight">\(j\in \{0,1,\dots,\mathrm{size}(\mathrm{name})-1\}\)</span> is an integer.
+Quantum registers are static arrays of qubits
+that cannot be dynamically resized.</p>
+<p>The keyword <code class="docutils literal notranslate"><span class="pre">qreg</span></code> is included
+for backwards compatibility and will be removed in the future.</p>
 <p>Qubits are initially in an undefined state. A quantum <code class="docutils literal notranslate"><span class="pre">reset</span></code> operation is one
 way to initialize qubit states.</p>
 <p>All qubits are global variables.
