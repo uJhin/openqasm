@@ -199,6 +199,22 @@ compatible with run-time values on some platforms.</p>
 </pre></div>
 </div>
 </section>
+<section id="complex-numbers">
+<h3>Complex numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">¶</a></h3>
+<p>Complex numbers may be declared as <code class="docutils literal notranslate"><span class="pre">complex[type[size]]</span> <span class="pre">name</span></code>, for a numeric OpenQASM classical type
+<code class="docutils literal notranslate"><span class="pre">type</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code>) and a number of bits <code class="docutils literal notranslate"><span class="pre">size</span></code>. The real
+and imaginary parts of the complex number are <code class="docutils literal notranslate"><span class="pre">type[size]</span></code> types. For instance, <code class="docutils literal notranslate"><span class="pre">complex[float[32]]</span> <span class="pre">c</span></code>
+would declare a complex number with real and imaginary parts that are 32-bit floating point numbers. The
+<code class="docutils literal notranslate"><span class="pre">im</span></code> keyword defines the imaginary number <span class="math notranslate nohighlight">\(sqrt(-1)\)</span>. <code class="docutils literal notranslate"><span class="pre">complex[type[size]]</span></code> types are initalized as
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">im</span></code>, where <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be of the same type as <code class="docutils literal notranslate"><span class="pre">type[size]</span></code>. <code class="docutils literal notranslate"><span class="pre">b</span></code> must occur to the
+left of <code class="docutils literal notranslate"><span class="pre">im</span></code> and the two can only be seperated by spaces/tabs (or nothing at all).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>complex[float[64]] c;
+c = 2.5 + 3.5im; // 2.5, 3.5 are resolved to be ``float[64]`` types
+complex[float[64]] d = 2.0+sin(π) + 3.1*5.5 im;
+complex[int[32]] f = 2 + 5 im; // 2, 5 are resolved to be ``int[32]`` types
+</pre></div>
+</div>
+</section>
 <section id="boolean-types">
 <h3>Boolean types<a class="headerlink" href="#boolean-types" title="Permalink to this headline">¶</a></h3>
 <p>There is a Boolean type <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">name;</span></code> that takes values <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. Qubit measurement results
@@ -276,10 +292,11 @@ namespace are listed in table <a class="reference external" href="#tab:real-cons
 </tbody>
 </table>
 </div>
-<p>Note that <cite>e</cite> is a valid identifier. <cite>e/E</cite> are also used in scientifier notation where appropriate.
-Types related to timing
-———————–</p>
+<p>Note that <cite>e</cite> is a valid identifier. <cite>e/E</cite> are also used in scientific notation where appropriate.</p>
 </section>
+</section>
+<section id="types-related-to-timing">
+<h2>Types related to timing<a class="headerlink" href="#types-related-to-timing" title="Permalink to this headline">¶</a></h2>
 <section id="duration">
 <h3>Duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h3>
 <p>We introduce a <code class="docutils literal notranslate"><span class="pre">duration</span></code> type to express timing.
@@ -386,6 +403,7 @@ variables whose values may only be known at run time.</p>
 <li class="toctree-l3"><a class="reference internal" href="#generalities">Generalities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#quantum-types">Quantum types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#classical-types">Classical types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#types-related-to-timing">Types related to timing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aliasing">Aliasing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#register-concatenation-and-slicing">Register concatenation and slicing</a></li>
 </ul>
