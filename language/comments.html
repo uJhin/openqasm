@@ -42,7 +42,7 @@
 <p>A comment block begins with <code class="docutils literal notranslate"><span class="pre">/*</span></code> and ends with <code class="docutils literal notranslate"><span class="pre">*/</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">A comment block</span>
-<span class="cm">*/</span>
+<span class="cm">*/</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -62,9 +62,9 @@ permitted, nor may it appear elsewhere than the first non-comment line.</p>
 <p>The statement <code class="docutils literal notranslate"><span class="pre">include</span> <span class="pre">&quot;filename&quot;;</span></code> continues parsing <code class="docutils literal notranslate"><span class="pre">filename</span></code> as if the
 contents of the file were inserted at the location of the <code class="docutils literal notranslate"><span class="pre">include</span></code> statement.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// First non-comment is a version string</span>
-<span class="n">OPENQASM</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="n">OPENQASM</span><span class="w"> </span><span class="mf">3.0</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">include</span> <span class="s">&quot;stdgates.qasm&quot;</span><span class="p">;</span>
+<span class="n">include</span><span class="w"> </span><span class="s">&quot;stdgates.qasm&quot;</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Rest of QASM program</span>
 </pre></div>
