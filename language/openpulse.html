@@ -42,9 +42,9 @@ with <code class="docutils literal notranslate"><span class="pre">cal</span></co
 this document, we outline one such grammar, OpenPulse, which may be selected within a supporting
 compiler through the declaration <code class="docutils literal notranslate"><span class="pre">defcalgrammar</span> <span class="pre">&quot;openpulse&quot;;</span></code>.</p>
 <p>This grammar is primarily motivated by the original OpenPulse specification, a JSON wire-format for
-pulse-level quantum programs defined in the paper <a href="#id17"><span class="problematic" id="id18">`Qiskit Backend Specifications for OpenQASM
+pulse-level quantum programs defined in the paper <a href="#id7"><span class="problematic" id="id8">`Qiskit Backend Specifications for OpenQASM
 and OpenPulse Experiment`_</span></a><span class="bibtex" id="id1">[mckay2018]</span>, however, is also inspired directly or indirectly through
-other <a href="#id19"><span class="problematic" id="id20">`efforts in the field`_</span></a><span class="bibtex" id="id2">[alexanderQiskitPulseProgramming2020a]</span><span class="bibtex" id="id3">[DiCarloLabDelftPycQEDPy32021]</span><span class="bibtex" id="id4">[ExperimentalMicroarchitectureSuperconducting]</span><span class="bibtex" id="id5">[nguyenEnablingPulselevelProgramming2020]</span><span class="bibtex" id="id6">[QuillangQuil2021]</span>.</p>
+other <a href="#id9"><span class="problematic" id="id10">`efforts in the field`_</span></a><span class="bibtex" id="id2">[alexanderQiskitPulseProgramming2020a]</span><span class="bibtex" id="id3">[DiCarloLabDelftPycQEDPy32021]</span><span class="bibtex" id="id4">[ExperimentalMicroarchitectureSuperconducting]</span><span class="bibtex" id="id5">[nguyenEnablingPulselevelProgramming2020]</span><span class="bibtex" id="id6">[QuillangQuil2021]</span>.</p>
 <p>The textual format described here has several advantages over the original JSON format:</p>
 <ul class="simple">
 <li><p>Improved readability.</p></li>
@@ -56,8 +56,8 @@ physical qubits enabling the microcoding of gate level operations.</p></li>
 <li><p>Richer ability to compose complex pulses through natural DSP-like operations.</p></li>
 </ul>
 <p>Openpulse provides a flexible programming model that should extend to many quantum control schemes
-and hardware. At the core of the OpenPulse grammar are the concepts of <code class="docutils literal notranslate"><span class="pre">port``s,</span> <span class="pre">``waveform``s</span> <span class="pre">and,</span> <span class="pre">``frame``s.</span>
-<span class="pre">A</span> <span class="pre">``port</span></code> is a software abstraction representing any input or output component controlling qubits. It allows
+and hardware. At the core of the OpenPulse grammar are the concepts of <code class="docutils literal notranslate"><span class="pre">port</span></code>s, <code class="docutils literal notranslate"><span class="pre">waveform</span></code>s and, <code class="docutils literal notranslate"><span class="pre">frame</span></code>s.
+A <code class="docutils literal notranslate"><span class="pre">port</span></code> is a software abstraction representing any input or output component controlling qubits. It allows
 a hardware vendor to provide relevant actuation knobs they wish to expose to the user in order to manipulate and observe
 qubits, while hiding the complexities of the device’s underlying hardware. A <code class="docutils literal notranslate"><span class="pre">waveform</span></code> is a time-dependent envelope
 that can be used to emit signals on an output port or receive signals from an input port. A <code class="docutils literal notranslate"><span class="pre">frame</span></code> is also a software
@@ -147,7 +147,7 @@ generation phase.</p>
 <p>would initialize a frame on the <code class="docutils literal notranslate"><span class="pre">drive0</span></code> port with a frequency of 5 GHz, and phase of 0.0. Importantly,
 a frame can be initializated in either a <code class="docutils literal notranslate"><span class="pre">cal</span></code> or <code class="docutils literal notranslate"><span class="pre">defcal</span></code> block which means that the time with which it is
 initialized is the start time of the containing block (see <span class="xref std std-ref">Timing</span> section for more details).</p>
-<p>If a compiler toolchain is unable to support the initialization of <a href="#id7"><span class="problematic" id="id8">``</span></a>frame``s within <a href="#id9"><span class="problematic" id="id10">``</span></a>defcal``s, it is expected
+<p>If a compiler toolchain is unable to support the initialization of <code class="docutils literal notranslate"><span class="pre">frame</span></code>s within <code class="docutils literal notranslate"><span class="pre">defcal</span></code>s, it is expected
 to raise a compile-time error when such an initialization is encountered.</p>
 <p>Note that multiple frames may address the same port e.g.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">extern</span> <span class="nx">port</span> <span class="nx">measure_port</span><span class="p">;</span>
@@ -158,8 +158,8 @@ to raise a compile-time error when such an initialization is encountered.</p>
 </pre></div>
 </div>
 <p>The limitation on the number of frames that may address the same port depends entirely on hardware vendor
-and how they choose to map <a href="#id11"><span class="problematic" id="id12">``</span></a>frame``s to physical resources during the backend machine code generation phase.
-For example, a hardware vendor may choose to collapse all <a href="#id13"><span class="problematic" id="id14">``</span></a>frame``s attached to the same port into to a single
+and how they choose to map <code class="docutils literal notranslate"><span class="pre">frame</span></code>s to physical resources during the backend machine code generation phase.
+For example, a hardware vendor may choose to collapse all <code class="docutils literal notranslate"><span class="pre">frame</span></code>s attached to the same port into to a single
 NCO in analogy to virtual to physical register allocation.</p>
 </section>
 <section id="frame-manipulation">
@@ -405,7 +405,7 @@ through the existing timing instructions of <code class="docutils literal notran
 <p>As briefly discussed in the <span class="xref std std-ref">Frame Initialization</span> section, a <code class="docutils literal notranslate"><span class="pre">frame</span></code> initialized via a
 <code class="docutils literal notranslate"><span class="pre">newframe</span></code> command has its <code class="docutils literal notranslate"><span class="pre">.time</span></code> set to the time at the beginning of the containing
 <code class="docutils literal notranslate"><span class="pre">cal</span></code> or <code class="docutils literal notranslate"><span class="pre">defcal</span></code> block. Since a <code class="docutils literal notranslate"><span class="pre">cal</span></code> block is globally scoped in OpenPulse, this time
-would be absolute 0. Meanwhile, a <a href="#id15"><span class="problematic" id="id16">``</span></a>defcal``s start time is determined by when it is scheduled
+would be absolute 0. Meanwhile, a <code class="docutils literal notranslate"><span class="pre">defcal</span></code>s start time is determined by when it is scheduled
 (see <span class="xref std std-ref">Timing</span> section for more details) e.g.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 
