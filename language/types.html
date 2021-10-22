@@ -215,41 +215,39 @@ be true and 0 will be false.</p>
 </pre></div>
 </div>
 </section>
-<section id="real-constants">
-<h3>Real constants<a class="headerlink" href="#real-constants" title="Permalink to this headline">¶</a></h3>
-<p>To support mathematical expressions, there are immutable real constants
-that are represented as double precision floating point numbers. On
+<section id="const-values">
+<h3>Const values<a class="headerlink" href="#const-values" title="Permalink to this headline">¶</a></h3>
+<p>To support mathematical expressions, immutable constants of any classical type
+may be declared using the type modifier <code class="docutils literal notranslate"><span class="pre">const</span></code>. On
 declaration, they take their assigned value and cannot be redefined
 within the same scope. These are constructed using an in-fix notation
 and scientific calculator features such as scientific notation, real
 arithmetic, logarithmic, trigonometric, and exponential functions
 including <code class="docutils literal notranslate"><span class="pre">sqrt</span></code>, <code class="docutils literal notranslate"><span class="pre">floor</span></code>, <code class="docutils literal notranslate"><span class="pre">ceiling</span></code>, <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">pow</span></code>, <code class="docutils literal notranslate"><span class="pre">div</span></code>, <code class="docutils literal notranslate"><span class="pre">mod</span></code> and the built-in constant π. The
-statement <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">expression;</span></code> defines a new constant. The expression on the right hand side
+statement <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">type</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">expression;</span></code> defines a new constant. The expression on the right hand side
 has a similar syntax as OpenQASM 2 parameter expressions; however,
 previously defined constants can be referenced in later variable
-declarations. Real constants are compile-time constants, allowing the
+declarations. <code class="docutils literal notranslate"><span class="pre">const`</span></code> values are compile-time constants, allowing the
 compiler to do constant folding and other such optimizations. Scientific
 calculator-like operations on run-time values require extern function
 calls as described later and are not available by default. Real
-constants can be cast to other types. Casting attempts to preserve the
-semantics, but information can be lost, since variables have fixed
-precision. Unlike casting from other types, implicit casts from real
-constants are permitted.</p>
+constants can be cast to other types, just like other values.</p>
 <p>A standard set of built-in constants which are included in the default
-namespace are listed in table <a class="reference external" href="#tab:real-constants">1</a>.</p>
+namespace are listed in table <a class="reference external" href="#tab:real-constants">1</a>. These constants
+are all of type <code class="docutils literal notranslate"><span class="pre">float[64]</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare a constant</span>
-<span class="k">const</span><span class="w"> </span><span class="n">my_const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">my_const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// Scientific notation is supported</span>
-<span class="k">const</span><span class="w"> </span><span class="n">another_const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e2</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="w"> </span><span class="n">another_const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e12</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// Constant expressions are supported</span>
-<span class="k">const</span><span class="w"> </span><span class="n">pi_by_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">π</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="w"> </span><span class="n">pi_by_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">π</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// Constants may be cast to real-time values</span>
-<span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="w"> </span><span class="n">pi_by_2_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">float</span><span class="p">(</span><span class="n">pi_by_2</span><span class="p">)</span><span class="w"></span>
+<span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="w"> </span><span class="n">pi_by_2_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">float</span><span class="p">[</span><span class="mi">32</span><span class="p">](</span><span class="n">pi_by_2</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="docutils container" id="tab-real-constants">
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">[tab:real-constants] Built-in real constants in OpenQASM3.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">[tab:real-constants] Built-in real constants in OpenQASM3 of type <code class="docutils literal notranslate"><span class="pre">float[64]</span></code>.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 39%" />
 <col style="width: 18%" />
