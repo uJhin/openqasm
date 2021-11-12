@@ -322,7 +322,7 @@ another name as long as the alias is in scope.</p>
 be concatenated to form a register of the same type whose size is the
 sum of the sizes of the individual registers. The concatenated register
 is a reference to the bits or qubits of the original registers. The
-statement <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">||</span> <span class="pre">b</span></code> denotes the concatenation of registers <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>. A register cannot
+statement <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">++</span> <span class="pre">b</span></code> denotes the concatenation of registers <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>. A register cannot
 be concatenated with any part of itself.</p>
 <p>Classical and quantum registers can be indexed in a way that selects a
 subset of (qu)bits, i.e. by an index set. A register so indexed is
@@ -342,7 +342,7 @@ variables whose values may only be known at run time.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">one</span><span class="p">;</span><span class="w"></span>
 <span class="n">qubit</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="n">two</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// Aliased register of twelve qubits</span>
-<span class="n">let</span><span class="w"> </span><span class="n">concatenated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">two</span><span class="p">;</span><span class="w"></span>
+<span class="n">let</span><span class="w"> </span><span class="n">concatenated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">two</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// First qubit in aliased qubit array</span>
 <span class="n">let</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">concatenated</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
 <span class="c1">// Last qubit in aliased qubit array</span>
@@ -356,7 +356,7 @@ variables whose values may only be known at run time.</p>
 <span class="c1">// Using negative ranges to take the last 3 elements</span>
 <span class="n">let</span><span class="w"> </span><span class="n">last_three</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">two</span><span class="p">[</span><span class="mi">-4</span><span class="o">:</span><span class="mi">-1</span><span class="p">];</span><span class="w"></span>
 <span class="c1">// Concatenate two alias in another one</span>
-<span class="n">let</span><span class="w"> </span><span class="n">both</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sliced</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">last_three</span><span class="p">;</span><span class="w"></span>
+<span class="n">let</span><span class="w"> </span><span class="n">both</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sliced</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">last_three</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
