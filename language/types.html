@@ -9,11 +9,12 @@
     <title>Types and Casting &#8212; OpenQASM Live Specification  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/colors.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gates" href="gates.html" />
@@ -45,7 +46,8 @@ sets with the addition of decimal numerals [0-9]. Variable identifiers may not
 override a reserved identifier.</p>
 <p>In addition to being assigned values within a program, all of the classical
 types can be initialized on declaration. Any classical variable or Boolean that is not explicitly
-initialized is undefined. Classical types can be mutually cast to one another using the typename.</p>
+initialized is undefined. Classical types can be mutually cast to one another using the typename.
+See <a class="reference internal" href="#castingspecifics"><span class="std std-ref">Casting specifics</span></a> for more details on casting.</p>
 <p>Declaration and initialization must be done one variable at a time for both quantum and classical
 types. Comma seperated declaration/initialization (<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z</span></code>) is NOT allowed for any type. For
 example, to declare a set of qubits one must do</p>
@@ -286,12 +288,13 @@ are all of type <code class="docutils literal notranslate"><span class="pre">flo
 <section id="duration">
 <h3>Duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h3>
 <p>We introduce a <code class="docutils literal notranslate"><span class="pre">duration</span></code> type to express timing.
-Durations are positive numbers with a unit of time. <code class="docutils literal notranslate"><span class="pre">ns,</span> <span class="pre">μs,</span> <span class="pre">ms,</span> <span class="pre">s</span></code> are used for SI time
-units. <code class="docutils literal notranslate"><span class="pre">dt</span></code> is a backend-dependent unit equivalent to one waveform sample on
-the backend. <code class="docutils literal notranslate"><span class="pre">durationof()</span></code> is an intrinsic function used to reference the duration of a calibrated gate.</p>
+Durations are numbers with a unit of time. <code class="docutils literal notranslate"><span class="pre">ns,</span> <span class="pre">μs,</span> <span class="pre">us,</span> <span class="pre">ms,</span> <span class="pre">and</span> <span class="pre">s</span></code> are used for SI time
+units. <code class="docutils literal notranslate"><span class="pre">dt</span></code> is a backend-dependent unit equivalent to one waveform sample.
+<code class="docutils literal notranslate"><span class="pre">durationof()</span></code> is an intrinsic function used to reference the
+duration of a calibrated gate.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span><span class="w"> </span><span class="n">one_second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="n">ms</span><span class="p">;</span><span class="w"></span>
 <span class="n">duration</span><span class="w"> </span><span class="n">thousand_cycles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
-<span class="n">duration</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">durationof</span><span class="p">({</span><span class="n">x</span><span class="w"> </span><span class="n">$3</span><span class="p">);</span><span class="w"></span>
+<span class="n">duration</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">durationof</span><span class="p">({</span><span class="n">x</span><span class="w"> </span><span class="n">$3</span><span class="p">;});</span><span class="w"></span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">duration</span></code> is further discussed in <a class="reference internal" href="delays.html#duration-and-stretch"><span class="std std-ref">Duration and stretch types</span></a></p>
@@ -360,6 +363,200 @@ variables whose values may only be known at run time.</p>
 </pre></div>
 </div>
 </section>
+<section id="casting-specifics">
+<span id="castingspecifics"></span><h2>Casting specifics<a class="headerlink" href="#casting-specifics" title="Permalink to this headline">¶</a></h2>
+<p>The classical types are divided into the ‘standard’ classical types (bool, int,
+uint, and float) that exist in languages like C, and the ‘special’ classical
+types (bit, angle, duration, and stretch) that do not.</p>
+<p>In general, for any cast between standard types that results in loss of
+precision, if the source value is larger than can be represented in the target
+type, the exact behavior is implementation specific and must be documented by
+the vendor.</p>
+<section id="allowed-casts">
+<h3>Allowed casts<a class="headerlink" href="#allowed-casts" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head" colspan="8"><p><span class="center">Casting To</span></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Casting From</p></th>
+<th class="head"><p>bool</p></th>
+<th class="head"><p>int</p></th>
+<th class="head"><p>uint</p></th>
+<th class="head"><p>float</p></th>
+<th class="head"><p>angle</p></th>
+<th class="head"><p>bit</p></th>
+<th class="head"><p>duration</p></th>
+<th class="head"><p>qubit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><strong>bool</strong></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>int</strong></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>uint</strong></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>float</strong></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>angle</strong></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>bit</strong></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="gbg">Yes</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>duration</strong></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No*</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="center">-</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>qubit</strong></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="rbg">No</span></p></td>
+<td><p><span class="center">-</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>*Note: <code class="docutils literal notranslate"><span class="pre">duration</span></code> values can be converted to <code class="docutils literal notranslate"><span class="pre">float</span></code> using the division operator. See <a class="reference internal" href="#divideduration"><span class="std std-ref">Converting duration to other types</span></a></p>
+</section>
+<section id="casting-from-bool">
+<h3>Casting from bool<a class="headerlink" href="#casting-from-bool" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">bool</span></code> values cast from <code class="docutils literal notranslate"><span class="pre">false</span></code> to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and from <code class="docutils literal notranslate"><span class="pre">true</span></code> to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> or
+an equivalent representation. <code class="docutils literal notranslate"><span class="pre">bool</span></code> values can only be cast to <code class="docutils literal notranslate"><span class="pre">bit[1]</span></code>
+(a single bit), so explicit index syntax must be given if the target <code class="docutils literal notranslate"><span class="pre">bit</span></code>
+has more than 1 bit of precision.</p>
+</section>
+<section id="casting-from-int-uint">
+<h3>Casting from int/uint<a class="headerlink" href="#casting-from-int-uint" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">int[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">uint[n]</span></code> values cast to the standard types mimicking C99
+behavior. Casting to <code class="docutils literal notranslate"><span class="pre">bool</span></code> values follows the convention <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">!=</span> <span class="pre">0</span></code>.
+As noted above, if the value is too large to be represented in the
+target type the result is implementation-specific. However,
+casting between <code class="docutils literal notranslate"><span class="pre">int[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">uint[n]</span></code> is expected to preserve the bit
+ordering, specifically it should be the case that <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">int[n](uint[n](x))</span></code>
+and vice versa. Casting to <code class="docutils literal notranslate"><span class="pre">bit[m]</span></code> is only allowed when <code class="docutils literal notranslate"><span class="pre">m==n</span></code>. If the target
+<code class="docutils literal notranslate"><span class="pre">bit</span></code> has more or less precision, then explicit slicing syntax must be given.
+As noted, the conversion is done assuming a little-endian 2’s complement
+representation.</p>
+</section>
+<section id="casting-from-float">
+<h3>Casting from float<a class="headerlink" href="#casting-from-float" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">float[n]</span></code> values cast to the standard types mimicking C99 behavior (<em>e.g.</em>
+discarding the fractional part for integer-type targets). As noted above,
+if the value is too large to be represented in the
+target type the result is implementation-specific.
+Casting a <code class="docutils literal notranslate"><span class="pre">float</span></code> value to an <code class="docutils literal notranslate"><span class="pre">angle[m]</span></code> is accomplished by first
+performing a modulo 2π operation on the float value. The resulting value
+is then converted to the nearest <code class="docutils literal notranslate"><span class="pre">angle[m]</span></code> possible. In the event of a
+tie between two possible nearest values the result is the one with an even
+least significant bit (<em>i.e.</em> round to nearest, ties to even).</p>
+</section>
+<section id="casting-from-angle">
+<h3>Casting from angle<a class="headerlink" href="#casting-from-angle" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">angle[n]</span></code> values cast to <code class="docutils literal notranslate"><span class="pre">bool</span></code> using the convention <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">!=</span> <span class="pre">0.0</span></code>.
+Casting to <code class="docutils literal notranslate"><span class="pre">bit[m]</span></code> values is only allowed when
+<code class="docutils literal notranslate"><span class="pre">n==m</span></code>, otherwise explicit slicing syntax must be provided.</p>
+<p>When casting between angles of differing precisions (<code class="docutils literal notranslate"><span class="pre">n!=m</span></code>): if the target
+has more significant bits, then the value is padded with <code class="docutils literal notranslate"><span class="pre">m-n</span></code> least
+significant bits of <code class="docutils literal notranslate"><span class="pre">0</span></code>; if the target has fewer significant bits, then
+there are two acceptable behaviors that can be supported by compilers:
+rounding and truncation. For rounding the value is rounded to the nearest
+value, with ties going to the value with the even least significant bit.
+Trunction is likely to have more hardware support. This behavior can be
+controlled by the use of a <code class="docutils literal notranslate"><span class="pre">#pragma</span></code>.</p>
+</section>
+<section id="casting-from-bit">
+<h3>Casting from bit<a class="headerlink" href="#casting-from-bit" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">bit[n]</span></code> values cast to <code class="docutils literal notranslate"><span class="pre">bool</span></code> using the convention <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">!=</span> <span class="pre">0</span></code>. Casting to
+<code class="docutils literal notranslate"><span class="pre">int[m]</span></code> or <code class="docutils literal notranslate"><span class="pre">uint[m]</span></code> is done assuming a little endian 2’s complement
+representation, and is only allowed when <code class="docutils literal notranslate"><span class="pre">n==m</span></code>, otherwise explicit slicing
+syntax must be given. Likewise, <code class="docutils literal notranslate"><span class="pre">bit[n]</span></code> can only be cast to <code class="docutils literal notranslate"><span class="pre">angle[m]</span></code>
+when <code class="docutils literal notranslate"><span class="pre">n==m</span></code>, in which case an exact per-bit copy is done using little-endian
+bit order. Finally, casting between bits of differing precisions is not
+allowed, explicit slicing syntax must be given.</p>
+</section>
+<section id="converting-duration-to-other-types">
+<span id="divideduration"></span><h3>Converting duration to other types<a class="headerlink" href="#converting-duration-to-other-types" title="Permalink to this headline">¶</a></h3>
+<p>Casting from or to duration values is not allowed, however, operations on
+durations that produce values of different types is allowed. For example,
+dividing a duration by a duration produces a machine-precision <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span><span class="w"> </span><span class="n">one_ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="n">ns</span><span class="p">;</span><span class="w"></span>
+<span class="n">duration</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="n">ns</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">a_in_ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">one_ns</span><span class="p">;</span><span class="w">  </span><span class="c1">// 500.0</span>
+
+<span class="n">duration</span><span class="w"> </span><span class="n">one_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">a_in_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">one_s</span><span class="p">;</span><span class="w"> </span><span class="c1">// 5e-7</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -392,6 +589,7 @@ variables whose values may only be known at run time.</p>
 <li class="toctree-l3"><a class="reference internal" href="#types-related-to-timing">Types related to timing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aliasing">Aliasing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#register-concatenation-and-slicing">Register concatenation and slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#casting-specifics">Casting specifics</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gates.html">Gates</a></li>
@@ -445,7 +643,7 @@ variables whose values may only be known at run time.</p>
       &copy;2017-2020, Andrew W. Cross, Lev S. Bishop, John A. Smolin, Jay M. Gambetta.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
