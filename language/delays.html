@@ -310,27 +310,27 @@ the other side of a box are permitted, but moving operations either into or out 
 part of an optimization is forbidden. The compiler can also infer a description of the
 operation which a <code class="docutils literal notranslate"><span class="pre">box</span></code> definition is meant to realise, allowing it to re-order gates around
 the box. For example, consider a dynamical decoupling sequence inserted in a part of the circuit:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>rx(2*π/12) q;
-box {
-    delay[ddt] q;
-    x q;
-    delay[ddt] q;
-    x q;
-    delay[ddt] q;
-}
-rx(3*π/12) q;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">π</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="n">box</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">rx</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">π</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>By boxing the sequence, we create a box that implements the identity. The compiler is now free
 to commute a gate past the box by knowing the unitary implemented by the box:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>rx(5*π/12) q;
-box {
-    delay[ddt] q;
-    x q;
-    delay[ddt] q;
-    x q;
-    delay[ddt] q;
-}
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">π</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="n">box</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">[</span><span class="n">ddt</span><span class="p">]</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The compiler can thus perform optimizations without interfering with the implmentation of the
