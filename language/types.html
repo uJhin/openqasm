@@ -333,7 +333,7 @@ interpreted as a register of the same type but with a different size.
 The register slice is a reference to the original register. A register
 cannot be indexed by an empty index set.</p>
 <p>An index set can be specified by a single integer (signed or unsigned), a
-comma-separated list of unsigned integers <code class="docutils literal notranslate"><span class="pre">a,b,c,…</span></code>, or a range. A
+comma-separated list of unsigned integers contained in braces <code class="docutils literal notranslate"><span class="pre">{a,b,c,…}</span></code>, or a range. A
 range is written as <code class="docutils literal notranslate"><span class="pre">a:b</span></code> or <code class="docutils literal notranslate"><span class="pre">a:c:b</span></code> where <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code> are integers (signed or unsigned).
 The range corresponds to the set <span class="math notranslate nohighlight">\(\{a, a+c, a+2c, \dots, a+mc\}\)</span>
 where <span class="math notranslate nohighlight">\(m\)</span> is the largest integer such that <span class="math notranslate nohighlight">\(a+mc\leq b\)</span> if
@@ -351,7 +351,7 @@ variables whose values may only be known at run time.</p>
 <span class="c1">// Last qubit in aliased qubit array</span>
 <span class="n">let</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">concatenated</span><span class="p">[</span><span class="mi">-1</span><span class="p">];</span><span class="w"></span>
 <span class="c1">// Qubits zero, three and five</span>
-<span class="n">let</span><span class="w"> </span><span class="n">qubit_selection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">two</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="n">let</span><span class="w"> </span><span class="n">qubit_selection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">two</span><span class="p">[{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">}];</span><span class="w"></span>
 <span class="c1">// First six qubits in aliased qubit array</span>
 <span class="n">let</span><span class="w"> </span><span class="n">sliced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">concatenated</span><span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="mi">6</span><span class="p">];</span><span class="w"></span>
 <span class="c1">// Every second qubit</span>
